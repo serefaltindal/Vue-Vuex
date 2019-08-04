@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <button-counter></button-counter>
+        <blog-post title="Başlık-1"></blog-post>
+        <blog-post title="Başlık-2"></blog-post>
+        <blog-post title="Başlık-3"></blog-post>
+    </div>
+    <hr>
+    <div id="app2">
+        <blog-post v-for="book in posts" v-bind:key="book.id" v-bind:title="book.title"></blog-post>
+    </div>
+
+    <script>
+
+        Vue.component('button-counter', {
+            data: function () {
+                return {
+                    count: 0
+                }
+            },
+            template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+        });
+
+
+        //props example we would like to pass data to child components
+        Vue.component('blog-post', {
+            props: ['title'],
+            template: '<h3>{{ title }}</h3>'
+        })
+
+        new Vue({
+            el: '#app'
+        });
+
+
+        new Vue({
+            el:"#app2",
+            data:{
+                posts:[
+                    {id:1,title:'Alice Harikalar Diyarında'},
+                    {id:2,title:'Küçük Prens'},
+                    {id:3,title:'Şeker Portakalı'}
+                ]
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>

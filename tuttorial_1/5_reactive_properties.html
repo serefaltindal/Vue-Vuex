@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+
+<body>
+
+    <div id="app">
+        <input type="text" v-model="age">
+        <p>Javascript:{{ age > 18 ? 'reşittir' : 'değildir' }}</p>
+        <p>Method:{{ageHandler()}}</p>
+        <p>Computed:{{ageHandlerComputed}}</p>
+        <hr>
+        <p>{{sayi}}</p>
+        <button @click='sayi++'>Arttır</button>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                age: 0,
+                sayi: 0
+            },
+            methods: {
+                ageHandler: function () {
+                    console.log("ageHandler Method çalıştı");
+                    return this.age >= 18 ? 'reşittir' : 'reşit değildir';
+                }
+            },
+            computed: {
+                ageHandlerComputed: function () {
+                    console.log("ageHandlerComputed Method çalıştı");
+                    return this.age >= 18 ? 'reşittir' : 'reşit değildir';
+
+                }
+            },
+            watch: {
+                age:function(value1,value2) {
+                    console.log("Yeni Değer:"+value1);
+                    console.log("Eski Değer:"+value2);
+
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

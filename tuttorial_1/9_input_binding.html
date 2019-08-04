@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <input v-model="message" placeholder="edit me">
+        <p>Message is: {{ message }}</p>
+        <hr>
+        <span>Multiline message is:</span>
+        <p style="white-space: pre-line">{{ multimessage }}</p>
+        <br>
+        <textarea v-model="multimessage" placeholder="add multiple lines"></textarea>
+        <hr>
+        <input type="checkbox" id="checkbox" v-model="checked">
+        <label for="checkbox">{{ checked }}</label>
+    </div>
+
+    <hr>
+
+    <div id='example-3'>
+        <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+        <label for="jack">Jack</label>
+        <input type="checkbox" id="john" value="John" v-model="checkedNames">
+        <label for="john">John</label>
+        <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+        <label for="mike">Mike</label>
+        <br>
+        <span>Checked names: {{ checkedNames }}</span>
+
+        <hr>
+
+        <select v-model="selected">
+            <option disabled value="">Please select one</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <span>Selected: {{ selected }}</span>
+    </div>
+
+    <hr>
+    <div id="example2">
+        <select v-model="selected">
+            <option v-for="option in options" :value="option.value">
+                {{ option.text }}
+            </option>
+        </select>
+        <span>Selected: {{ selected }}</span>
+
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                message: "",
+                multimessage: "",
+                checked: ""
+            }
+        })
+
+
+        new Vue({
+            el: "#example-3",
+            data: {
+                checkedNames: [],
+                selected: ""
+            }
+        })
+
+        new Vue({
+            el: "#example2",
+            data: {
+                selected: '1',
+                options: [
+                    { text: 'Bir', value: '1' },
+                    { text: 'İki', value: '2' },
+                    { text: 'Üç', value: '3' }
+                ]
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>
