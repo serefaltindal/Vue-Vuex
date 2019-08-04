@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<title>Vue Life Cycle</title>
+		<script src="http://unpkg.com/vue"></script>
+	</head>
+	<body style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
+		<div id="app" class="vInpt">
+			Check the console!
+		</div>
+
+		<script>
+			var app = new Vue({
+				el: '#app',
+				data: {
+					counter: 1
+				},
+				beforeCreate() {
+					console.log('\n');
+					console.log(this.counter++ + ' - BeforeCreate');
+				},
+				created() {
+					console.log('\n');
+					console.log(this.counter++ + ' - Created');
+				},
+				beforeMount() {
+					console.log('\n');
+					console.log(this.counter++ + ' - BeforeMount');
+				},
+				mounted() {
+					console.log('\n');
+					console.log(this.counter++ + ' - Mounted');
+				},
+				beforeDestroy() {
+					console.log('\n');
+					console.log(this.counter++ + ' - Defore Destroy');
+				},
+				destroyed() {
+					console.log('\n');
+					console.log(this.counter++ + ' - Destroyed');
+				}
+			});
+		</script>
+	</body>
+</html>

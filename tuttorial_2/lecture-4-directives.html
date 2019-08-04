@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<title>Directives</title>
+		<script src="http://unpkg.com/vue"></script>
+	</head>
+	<body style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
+		<div id="app">
+			<h2>Directives</h2>
+			<p>
+				Directives are special attributes with the "v-" prefix. Directive attribute values are expected to be a
+				<b>single JavaScript expression</b>
+				<ul>
+					Common Directives
+					<li>v-if</li>
+					<li>v-show</li>
+					<li>v-for</li>
+					<li>other components etc...</li> 
+				</ul>
+				<ul>
+					Directives with arguments
+					<li>v-on:click</li>
+					<li>v-on:change</li>
+					<li>v-bind:style</li>
+					<li>v-bind:href</li>
+				</ul>
+				
+				
+				<ul v-for="directive in directives">
+					{{ directive.name }}
+					
+					<li v-for="element in directive.val">{{ element }}</li>
+				</ul>
+			</p>
+		</div>
+		<script>
+			var app = new Vue({
+				el: '#app',
+				data: {
+					directives: [
+						{ name: 'Directives Without Args', val: ['v-if', 'v-show', 'v-for', 'other components etc ...'] },
+						{ name: 'Directives With Args', val: ['v-on:click', 'v-on:change', 'v-bind:style', 'v-bind:href', 'etc...'] }
+					]
+				},
+				methods: {
+					
+				}
+			});
+		</script>
+	</body>
+</html>

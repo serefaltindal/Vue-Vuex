@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<title>Filters</title>
+		<script src="http://unpkg.com/vue"></script>
+		<style>
+			.vInpt {
+				margin: 20px auto;
+				padding: 5px;
+				text-align: center;
+				border-radius: 10px;
+				width: 50%;
+				background-color: #f0f0f0;
+			}
+			.vInpt .input {
+				border-radius: 5px;
+				padding: 4px;
+				margin: 3px;
+				color: gray;
+			}
+			.vInpt h3 {
+				color: #aa3300;
+				margin: 3px;
+				padding: 3px;
+			}
+		</style>
+	</head>
+	<body style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
+		<div id="app" class="vInpt">
+			<h3>Filters</h3>
+			<input v-model="name" placeholder="type name" class="input" /><br />
+			{{ name | upperCase }}
+		</div>
+		<script>
+			var app = new Vue({
+				el: '#app',
+				data() {
+					return {
+						name: ''
+					};
+				},
+
+				filters: {
+					upperCase(val) {
+						return val.toString().toUpperCase();
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,146 @@
+<html>
+	<head>
+		<title>Form Bindings - 1</title>
+		<script src="http://unpkg.com/vue"></script>
+		<style lang="text/css">
+			.vInpt, .vInfo {
+				margin: 20px auto;
+				padding: 5px;
+				text-align: center;
+				border-radius: 10px;
+				width: 50%;
+				background-color: #F0F0F0;
+			}
+			.vInfo {
+				padding: 20px;
+				border: 1px solid gray;
+				background-color: rgb(75, 75, 75);
+				color : #dedede;
+			}
+			.vInfo .hl {
+				background-color: #dedede;
+				border-radius: 10px;
+				padding: 0 5px;
+				color: teal;
+			}
+
+			.vInfo .lnk {
+				color: #64e5ff;
+				font-style: italic;
+			}
+
+			.vInpt .input {
+				border-radius: 5px;
+				padding: 4px;
+				margin: 3px;
+				color: gray;
+			}
+
+			.vInpt h3 {
+				color: #AA3300;
+				margin: 3px;
+				padding: 3px;
+			}
+
+			
+		</style>
+	</head>
+	<body style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
+		<div id="app">
+			<div class="vInfo">
+				<p class="lnk">https://vuejs.org/v2/guide/forms.html</p>
+
+				You can use the <span class="hl">v-model</span> directive to create two-way data bindings on form input, textarea, and select elements.
+				It automatically picks the correct way to update the element based on the input type. Although a bit magical,
+				v-model is essentially syntax sugar for updating data on user input events, plus special care for some edge
+				cases.
+
+			</div>
+			<div class="vInpt">
+				<h3>Input</h3>
+				<input class="input" v-model="msg" placeholder="Enter your name"><br />
+				Hi dear {{ msg }}
+			</div>
+
+			<div class="vInpt">
+				<h3>Checkbox</h3>
+				<input class="input"  type="checkbox" id="checkbox" v-model="checked"><br />
+				<label for="checkbox">Status: {{ checked }}</label>
+			</div>
+
+			<div class="vInpt">
+				<h3>Multi Choice Checkbox</h3>
+				<div>
+					<input class="input" type="checkbox" id="bmw" value="Bmw" v-model="carBrands">
+					<label for="bmw">Bmw</label>
+					<input class="input" type="checkbox" id="audi" value="Audi" v-model="carBrands">
+					<label for="audi">Audi</label>
+					<input class="input" type="checkbox" id="mercedes" value="Mercedes" v-model="carBrands">
+					<label for="mercedes">Mercedes</label>
+					<br>
+					<span>Selected car brands: {{ carBrands }}</span>
+				</div>
+			</div>
+
+			<div class="vInpt">
+				<h3>Select</h3>
+				<select class="input" v-model="language">
+						<option disabled value="">Please select one</option>
+						<option>Vue</option>
+						<option>Angular</option>
+						<option>React</option>
+					</select>
+					<br>
+					<span>Selected language: {{ language }}</span>
+			</div>
+
+			<div class="vInpt">
+				<h3>Lazy Input</h3>
+				<input class="input" v-model.lazy="lazyMsg" placeholder="Enter your name"><br />
+				Hi dear {{ lazyMsg }}
+			</div>
+			
+			<div class="vInpt">
+				<h3>Number Input</h3>
+				<input class="input" v-model.number="numberMsg" placeholder="Enter a number"><br />
+				3 + {{ numberMsg }} = {{3 + numberMsg}}
+				<br>
+				<input class="input" v-model="numberMsg2" placeholder="Enter a number"><br />
+				3 + {{ numberMsg2 }} = {{3 + numberMsg2}}
+			</div>
+
+			<div class="vInpt">
+					<h3>Trimmed Input</h3>
+					<input class="input" v-model.trim="trimmedMsg" placeholder="Type something"><br />
+					you entered "{{ trimmedMsg }}"
+				</div>
+		</div>
+		<script>
+			var app = new Vue({
+				el: '#app',
+				data() {
+					return {
+						msg: '',
+						checked: false,
+						carBrands: [],
+						language: '',
+						lazyMsg: '',
+						numberMsg: 0,
+						numberMsg2: 0,
+						trimmedMsg: ''
+					};
+				},
+				watch: {
+					numberMsg: function() {
+						console.log(typeof this.numberMsg)
+						console.log(this.numberMsg)
+					},
+					numberMsg2: function() {
+						console.log(typeof this.numberMsg2)
+						console.log(this.numberMsg2)
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>Conditional Binding</title>
+		<script src="http://unpkg.com/vue"></script>
+	</head>
+	<body style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
+		<div id="app">
+			Show label : <input type="checkbox" v-model="showLabel" /> <br /><br />
+
+			<span v-show="showLabel" style="background-color: aqua">v-show is true, so this area is not hidden anymore </span>
+
+			<br /><br />
+			<br /><br />
+			Random sayı: {{ randomNumber }} <br /><br />
+			<span v-if="randomNumber % 10 === 0" style="background-color: white">
+				{{ randomNumber }} : 10'a bölünebilen bir sayıdır</span
+			>
+			<span v-else-if="randomNumber % 3 === 0" style="background-color: white">
+				{{ randomNumber }} : 3'e bölünebilen bir sayıdır</span
+			>
+			<span v-else style="background-color: white"> {{ randomNumber }} : 10 veya 3'e bölünemeyen sayıdır</span>
+		</div>
+		<script>
+			var app = new Vue({
+				el: '#app',
+				data: {
+					vShowCounter: 0,
+					randomNumber: Math.round(Math.random() * 100),
+					showLabel: false,
+					renderLabel: false
+				},
+				method: {
+					addCounter() {
+						return this.vShowCounter++;
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

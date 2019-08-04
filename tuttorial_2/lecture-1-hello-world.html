@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<title>Hello Vue</title>
+		<script src="http://unpkg.com/vue"></script>
+	</head>
+	<body style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
+		<div id="app">
+			<input v-model="appMsg" />
+			<br /><br />
+			{{ appMsg }}
+			<br /><br /><br />
+		</div>
+
+		<div id="secondApp">
+			{{ appMsg }}
+		</div>
+		<script>
+			var app = new Vue({
+				el: '#app',
+				data: {
+					appMsg: 'Hello World!'
+				}
+			});
+
+			var app2 = new Vue({
+				// el: is the instance id of the DOM element
+				el: '#secondApp',
+				data: {
+					appMsg: 'Hello, welcome to amazing Vue!'
+				},
+				components: [],
+
+				// All events are handled here
+				methods: {},
+
+				// Page Life Cycle
+				created() {},
+				beforeMount() {},
+				mounted() {},
+
+				// Special block: watchers and computed elements
+				watch: {},
+				computed: {}
+			});
+		</script>
+	</body>
+</html>

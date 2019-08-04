@@ -1,0 +1,69 @@
+<html>
+	<head>
+		<title>Object List Rendering</title>
+		<script src="http://unpkg.com/vue"></script>
+	</head>
+	<body style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
+		<div id="app">
+			<input v-model="name" placeholder="type name" />
+			<input v-model="surname" placeholder="type surname" style="margin-left: 20px;" />
+			<input v-model="birthdate" placeholder="type birthdate" type="date" style="margin-left: 20px;" />
+			<button @click="addPerson()" style="margin-left:50px;">Kişi Ekle</button>
+			<div v-for="(item, index) in peopleList" style="margin:5px;">
+				<span style="cursor: pointer; color:#FF6600;" @click="removePerson(index)">Sil >> </span>
+				<span style="color:666666"
+					>Adı: {{ item.name }}, Soyadı: {{ item.surname }}, Doğum Tarihi: {{ item.birthdate }}
+				</span>
+			</div>
+		</div>
+		<script>
+			var app = new Vue({
+				el: '#app',
+				data() {
+					return {
+						peopleList: [],
+						person: { name: null, surname: null, birthdate: null },
+						name: null,
+						surname: null,
+						birthdate: null
+					};
+				},
+
+				methods: {
+					removePerson(index) {
+						if (this.peopleList && this.peopleList.length > 0) {
+							this.peopleList.splice(index, 1);
+						}
+					},
+					addPerson() {
+						if (this.name == null || this.surname == null || this.birthdate == null) {
+							alert('Please enter all the fields');
+							return;
+						}
+						if (this.peopleList == null) {
+							this.peopleList = [];
+						}
+
+						let personExists = false;
+						if (this.peopleList.length > 0) {
+							for (let i = 0; i < this.peopleList.length; i++) {
+								if (this.peopleList[i].name === this.name && this.peopleList[i].surname === this.surname) {
+									personExists = true;
+									break;
+								}
+							}
+						}
+						if (this.peopleList.lenght === 0 || !personExists) {
+							this.peopleList.push({ name: this.name, surname: this.surname, birthdate: this.birthdate });
+							this.name = null;
+							this.surname = null;
+							this.birthdate = null;
+						} else {
+							alert('Person already on the list');
+						}
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

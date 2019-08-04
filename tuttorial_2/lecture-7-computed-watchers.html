@@ -1,0 +1,112 @@
+<html>
+	<head>
+		<title>Computed Properties And Watchers</title>
+		<script src="http://unpkg.com/vue"></script>
+	</head>
+	<body style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
+		<div id="app">
+			<h2>Computed Properties and Watchers</h2>
+			<a href="https://vuejs.org/v2/guide/computed.html#Computed-vs-Watched-Property" target="_blank"
+				>Vue Documentation</a
+			>
+			<br />
+			<ul>
+				<li>Computed properties and watchers can be thought as special METHODS in Vue.js</li>
+				<li>These special methods are rendered at the time which the data binded to this properties are changed.</li>
+				<li>
+					Methods are needed to be triggered or called according to situations (like on button click, texh changed vs.)
+				</li>
+				<li>The main difference is; computed properties and watchers works for reactive rendering of elements.</li>
+			</ul>
+
+			<input v-model="radius" placeholder="enter raidus" @change="getCircumferenceByMethod()" />
+			<p>
+				The circumference by method is : <span style="color:red">{{ circumference }}</span>
+			</p>
+			<p>
+				The circumference by computed is : <span style="color:orange">{{ getCircumference }}</span>
+			</p>
+			<p>
+				The watcherProp data is : <span style="color:aqua">{{ watcherProp }}</span>
+			</p>
+			<p>
+				The computedProp data is : <span style="color:chartreuse">{{ computedProp }}</span>
+			</p>
+			<div>
+				<input v-model="filter" placeholder="Type team name" />
+				<ul v-if="filter != ''">
+					<li v-for="player in getPlayer">{{ player.team }} : {{ player.name }}</li>
+				</ul>
+			</div>
+
+			<div>
+				<input v-model="filter2" placeholder="Type team name" />
+				<ul v-if="filter2 != ''">
+					<li v-for="player in resultList">{{ player.team }} : {{ player.name }}</li>
+				</ul>
+			</div>
+		</div>
+
+		<script>
+			var app = new Vue({
+				el: '#app',
+				data: {
+					radius: null,
+					circumference: null,
+					watcherProp: null,
+					computedProp: null,
+					filter: '',
+					playersList: [
+						{ name: 'Ahmet', team: 'Team 1' },
+						{ name: 'Mehmet', team: 'Team 2' },
+						{ name: 'Hasan', team: 'Team 2' },
+						{ name: 'Ali', team: 'Team 2' },
+						{ name: 'Kadir', team: 'Team 3' },
+						{ name: 'Kenan', team: 'Team 3' }
+					],
+					filter2: '',
+					playersList2: [
+						{ name: 'Ahmet', team: 'Team 1' },
+						{ name: 'Mehmet', team: 'Team 2' },
+						{ name: 'Hasan', team: 'Team 2' },
+						{ name: 'Ali', team: 'Team 2' },
+						{ name: 'Kadir', team: 'Team 3' },
+						{ name: 'Kenan', team: 'Team 3' }
+					],
+					resultList: []
+				},
+				methods: {
+					getCircumferenceByMethod() {
+						this.circumference = this.calculateCircumference();
+					},
+
+					calculateCircumference() {
+						if (this.radius && !isNaN(this.radius)) {
+							return 3.14 * 2 * this.radius;
+						}
+						return (this.circumference = null);
+					}
+				},
+				computed: {
+					getCircumference: function() {
+						this.computedProp = this.radius;
+						return this.calculateCircumference();
+					},
+					getPlayer() {
+						return this.playersList.filter(e => e.team === this.filter);
+					}
+				},
+				watch: {
+					radius: function(val) {
+						// this.watcherProp = this.radius
+						// or
+						this.watcherProp = val;
+					},
+					filter2() {
+						this.resultList = this.playersList2.filter(e => e.team === this.filter2);
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>Vue Attribute Setter - v-bind:</title>
+		<script src="http://unpkg.com/vue"></script>
+	</head>
+	<body style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
+		<div id="app">
+			<div style="color:red">The style attribute of this html element is static, non changeable</div>
+			<div v-bind:style="{ color: myColor, cursor:'pointer', fontSize:textSize + 'px' }">
+				The style attribute of this html element is dynamic and getting values from vue dynamicaly
+			</div>
+			<input v-model="myColor" />
+			<input v-model="textSize" />
+
+			<br /><br /><br />
+			<button disabled="true">Button 1</button>
+			<br /><br />
+			<input type="checkbox" v-model="btnDisabled" /><button v-bind:disabled="btnDisabled">Button 2</button>
+
+			<br /><br /><br />
+			<!-------------------------------------------------------------------
+        ----- Shorthand for v-bind is :, look for the example above ---------
+				------------------------------------------------------------------->
+			<a :href="url"> {{ url }} </a>
+		</div>
+		<script>
+			var app = new Vue({
+				el: '#app',
+				data() {
+					return {
+						myColor: 'green',
+						textSize: 15,
+						btnDisabled: true,
+						url: 'http://google.com'
+					};
+				}
+			});
+		</script>
+	</body>
+</html>

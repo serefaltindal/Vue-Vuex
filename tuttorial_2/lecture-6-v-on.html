@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<title>Vue Events with v-on:</title>
+		<script src="http://unpkg.com/vue"></script>
+	</head>
+	<body style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
+		<div id="app">
+			<input v-model="text1" v-on:change="textChanged()" placeholder="type something" />
+			<br /><br />
+			<input v-model="text2" v-on:input="inputChanged()" placeholder="type something" />
+
+			<br /><br />
+			<br /><br />
+			<button v-on:click="button1Clicked()">Button 1</button>
+			<br /><br />
+			<!-------------------------------------------------------------------
+        ----- Shorthand for v-on is @, look for the example above ---------
+        ------------------------------------------------------------------->
+			<button @click="button2Clicked()">Button 2</button>
+		</div>
+		<script>
+			var app = new Vue({
+				el: '#app',
+				data() {
+					return {
+						text1: '',
+						text2: ''
+					};
+				},
+				methods: {
+					textChanged() {
+						console.log('******* CHANGE EVENT **********');
+						console.log(this.text1);
+					},
+					inputChanged() {
+						console.log(this.text2);
+					},
+					button1Clicked() {
+						alert('This alert is thrown by "v-on:" attribute');
+					},
+					button2Clicked() {
+						alert('This alert is thrown by "@" attribute');
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<title>List Rendering</title>
+		<script src="http://unpkg.com/vue"></script>
+	</head>
+	<body style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
+		<div id="app">
+			<input v-model="todo" placeholder="type a task" />
+			<button @click="addToTodoList()" style="margin-left:20px;">Ekle</button>
+			<div v-for="item in todoList" style="margin:5px;">
+				<span style="cursor: pointer; color:rgb(140, 162, 209)" @click="removeTodoItem(item)">OK</span>
+				<span style="color:brown">{{ item }}</span>
+			</div>
+		</div>
+		<script>
+			var app = new Vue({
+				el: '#app',
+				data() {
+					return {
+						todoList: [],
+						todo: null
+					};
+				},
+				methods: {
+					addToTodoList() {
+						if (!this.todo) {
+							alert('Lütfen task alanını doldurun!');
+							return;
+						}
+						if (this.todoList.indexOf(this.todo) === -1) {
+							this.todoList.push(this.todo);
+							this.todo = null;
+						} else {
+							alert('Bu task zaten mevcut');
+							return;
+						}
+					},
+					removeTodoItem(item) {
+						if (this.todoList == null || this.todoList.length === 0) {
+							return;
+						}
+
+						if (this.todoList.indexOf(item) > -1) {
+							this.todoList.splice(this.todoList.indexOf(item), 1);
+						}
+					}
+				}
+			});
+		</script>
+	</body>
+</html>
